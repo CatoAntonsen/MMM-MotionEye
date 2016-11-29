@@ -42,7 +42,7 @@ These are the valid configuration options:
 Configuration option | Comment | Default 
 ---|---|---
 url | Video Streaming URL.<br><br>You find it in <i>Motion Eye</i> in the <i>Video Streaming Section</i> under <i>Usefull URLs</i> by by clicking the <i>Streaming URL</i> link.<br><br>It should look something like this: `http://motioneye:8081` (probably an IP instead of hostname) | No default
-autoHide | If you want the camera to only be visible on the mirror when there is motion, set this to true. You will then have to enable "Call a Web Hook" in Motion Eye under the Motion Notifications section: <br><br> - Web Hook URL: <b>[http://URL of your mirror]/motioneye</b>. Example: http://192.168.1.11:8080/motioneye<br> - HTTP Method: <b>GET</b>|false<br><br>Remember to update IP white list to enable access from your Motion Eye box.
+autoHide | If you want the camera to only be visible on the mirror when there is motion, set this to true. You will then have to enable "Call a Web Hook" in Motion Eye under the Motion Notifications section: <br><br> - Web Hook URL: <b>[http://URL of your mirror]/motioneye</b>. Example: http://192.168.1.11:8080/motioneye<br> - HTTP Method: <b>GET</b><br><br>Remember to update IP white list to enable access from your Motion Eye box.|false
 autoHideDelay|If autoHide is enabled you can decide how long to wait before hiding the camera|60000 (60 seconds)
 width|Width of camera image. You have to try out what fits YOUR monitor | 400px
 debug|Show messages in the log|false
