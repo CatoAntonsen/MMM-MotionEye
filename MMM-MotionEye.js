@@ -11,11 +11,10 @@ Module.register("MMM-MotionEye",{
 
 	// Default module config.
 	defaults: {
-		url: "http://192.168.1.115:8081",
-		width: "60px",
+		width: "400px",
 		autoHide: false,
 		autoHideDelay: 60000,
-		debug: true
+		debug: false
 	},
 
 	debug: function(msg) {
