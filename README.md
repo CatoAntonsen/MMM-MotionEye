@@ -35,6 +35,24 @@ Add the module to the modules array in the `config/config.js` file by adding the
 	}
 },
 ```
+
+## Update
+
+To update remote to your MagicMirror²-box with your terminal software and go to the MMM-MotionEye folder:
+````bash
+cd ~/MagicMirror/modules/MMM-MotionEye
+````
+
+Clone the repository:
+````bash
+git pull
+````
+
+Restart Magic Mirror (this asume you uses pm2):
+````bash
+pm2 restart mm
+````
+
 ## Configuration options
 
 These are the valid configuration options:
