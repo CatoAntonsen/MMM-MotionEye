@@ -19,13 +19,13 @@ module.exports = NodeHelper.create({
 			self.config = config;
 			
 			if (config.autoHide) {
-				this.expressApp.get('/motioneye', function (req, res) {
+				this.expressApp.get('/motioneye/:id*?', function (req, res) {
 					console.log("Motion registered");
-					res.send('Motion registered');
-					self.sendSocketNotification("MotionEyeShow", null);
+					res.send('Motion registered: ' + req.params.id);
+					self.sendSocketNotification("MotionEyeShow", req.params.id);
 				});
 			} else {
-				self.sendSocketNotification("MotionEyeShow", null);
+				self.sendSocketNotification("MotionEyeShow", undefined);
 			}
 			return;
 		}

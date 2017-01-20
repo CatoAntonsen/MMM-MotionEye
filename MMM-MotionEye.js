@@ -34,7 +34,7 @@ Module.register("MMM-MotionEye",{
 	getDom: function() {
 		if (this.motionDetected) {
 			var img = document.createElement("img");
-			img.setAttribute("ID", "motionEyeImage");
+			img.setAttribute("class", "motionEyeImage");
 			img.src = this.config.url;
 			img.style.width = this.config.width;
 			return img;
@@ -43,10 +43,11 @@ Module.register("MMM-MotionEye",{
 		return document.createElement("div");
 	},
 	
-	socketNotificationReceived: function(notification, payload) {
-		console.log("NOTIFICATION");
+	socketNotificationReceived: function(notification, id) {
+		this.debug("NOTIFICATION: " + id);
+		this.debug("CONFIG: " + this.config.id);
 
-		if (notification === "MotionEyeShow"){
+		if (notification === "MotionEyeShow" && (id == null || this.config.id == null) || this.config.id == id){
 			this.motionDetected = true;
 			this.updateDom();
 			
@@ -68,11 +69,6 @@ Module.register("MMM-MotionEye",{
 			} else {
 				this.debug("AutoHide is not enabled")
 			}
-		}
-		
-		if (notification === "MotionEyeHide" && this.config.autoHide){
-			this.debug("Hiding module")
-			this.hide(2000);
 		}
 	}
 });

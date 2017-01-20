@@ -3,7 +3,7 @@
 
 ![Example](example.png) 
 
-Current version is 1.1.0 See [changelog](CHANGELOG.md "Version history") for version history.
+Current version is 1.2.0 See [changelog](CHANGELOG.md "Version history") for version history.
 
 ## Pre-requisite
 
@@ -27,6 +27,7 @@ Add the module to the modules array in the `config/config.js` file by adding the
 	module: 'MMM-MotionEye',
 	position: 'bottom_right',
 	config: {
+		id: 1,
 		url: "[See configuration options below]",
 		width: "400px",
 		autoHide: true,
@@ -59,8 +60,9 @@ These are the valid configuration options:
 
 Configuration option | Comment | Default 
 ---|---|---
+id | If you have multiple instances of this module and turned on autoHide, then this value has to match the Web Hook url in Motion Eye. You can use same id on many instances if you want. | N/A
 url | Video Streaming URL.<br><br>You find it in <i>Motion Eye</i> in the <i>Video Streaming Section</i> under <i>Usefull URLs</i> by by clicking the <i>Streaming URL</i> link.<br><br>It should look something like this: `http://motioneye:8081` (probably an IP instead of hostname) | No default
-autoHide | If you want the camera to only be visible on the mirror when there is motion, set this to true. You will then have to enable "Call a Web Hook" in Motion Eye under the Motion Notifications section: <br><br> - Web Hook URL: <b>[http://URL of your mirror]/motioneye</b>. Example: http://192.168.1.11:8080/motioneye<br> - HTTP Method: <b>GET</b><br><br>Remember to update IP white list to enable access from your Motion Eye box.|false
+autoHide | If you want the camera to only be visible on the mirror when there is motion, set this to true. You will then have to enable "Call a Web Hook" in Motion Eye under the Motion Notifications section: <br><br> - Web Hook URL: <b>[http://URL of your mirror]/motioneye</b>. Example: http://192.168.1.11:8080/motioneye or http://192.168.1.11:8080/motioneye/id if you have multiple instances of this module<br> - HTTP Method: <b>GET</b><br><br>Remember to update IP white list to enable access from your Motion Eye box.|false
 autoHideDelay|If autoHide is enabled you can decide how long to wait before hiding the camera|60000 (60 seconds)
 width|Width of camera image. You have to try out what fits YOUR monitor | 400px
 debug|Show messages in the log|false
