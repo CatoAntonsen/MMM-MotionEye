@@ -63,8 +63,12 @@ Module.register("MMM-MotionEye",{
 				this.debug("Module will autohide in " + this.config.autoHideDelay + " ms")
 				var self = this;
 				self.timeOutID = setTimeout(function() {
-					self.debug("Autohiding ...")
-					self.hide(2000);
+					self.debug("Autohiding ...");
+					self.hide(2000, function() {
+						self.debug("Removing stream");
+						self.motionDetected = false;
+						self.updateDom();
+					});
 				}, self.config.autoHideDelay);
 			} else {
 				this.debug("AutoHide is not enabled")
