@@ -74,5 +74,13 @@ Module.register("MMM-MotionEye",{
 				this.debug("AutoHide is not enabled")
 			}
 		}
+		if (notification === "MotionEyeHide") {
+			self.debug("Autohiding ...");
+			self.hide(2000, function() {
+				self.debug("Removing stream");
+				self.motionDetected = false;
+				self.updateDom();
+			});
+		}
 	}
 });
