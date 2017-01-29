@@ -3,7 +3,7 @@
 
 ![Example](example.png) 
 
-Current version is 1.3.0 See [changelog](CHANGELOG.md "Version history") for version history.
+Current version is 1.4.0 See [changelog](CHANGELOG.md "Version history") for version history.
 
 ## Pre-requisite
 
