@@ -19,15 +19,15 @@ module.exports = NodeHelper.create({
 			self.config = config;
 			
 			if (config.autoHide) {
-				this.expressApp.get('/motioneye/:id', function (req, res) {
-					console.log("Motion registered");
-					res.send('Motion registered: ' + req.params.id);
-					self.sendSocketNotification("MotionEyeShow", req.params.id);
-				});
-				this.expressApp.get('/motioneye/:id/hide', function (req, res) {
+				this.expressApp.get('/motioneye/hide/:id*?', function (req, res) {
 					console.log("Hide registered");
 					res.send('Hide registered: ' + req.params.id);
 					self.sendSocketNotification("MotionEyeHide", req.params.id);
+				});
+				this.expressApp.get('/motioneye/:id*?', function (req, res) {
+					console.log("Motion registered");
+					res.send('Motion registered: ' + req.params.id);
+					self.sendSocketNotification("MotionEyeShow", req.params.id);
 				});
 			} else {
 				self.sendSocketNotification("MotionEyeShow", undefined);
