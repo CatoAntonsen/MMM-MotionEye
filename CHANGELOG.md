@@ -1,5 +1,9 @@
 #MMM-MotionEye Change Log
 
+## [1.4.0] - 2017-01-29
+
+- Added functionality to hide video stream remotely with a link function ([PR#5](https://github.com/CatoAntonsen/MMM-MotionEye/pull/5) by [snille](https://github.com/snille) )
+
 ## [1.3.0] - 2017-01-21
 
 - Close stream when module is hidden (https://github.com/CatoAntonsen/MMM-MotionEye/issues/2)
