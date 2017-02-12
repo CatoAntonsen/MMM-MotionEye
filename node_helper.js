@@ -14,31 +14,26 @@ module.exports = NodeHelper.create({
 	},
 
 	socketNotificationReceived: function(notification, config) {
-		var self = this;
 		if (notification === "CONFIG") {
-			self.config = config;
-			
 			if (config.autoHide) {
-
-				// Start by hiding camera
+				var self = this;
+				
 				console.log("Hiding camera: " + config.id);
-				self.sendSocketNotification("MotionEyeHide", config.id);
+				this.sendSocketNotification("MotionEyeHide", config.id);
 
 				this.expressApp.get('/motioneye/hide/:id*?', function (req, res) {
-					console.log("Hide registered");
+					console.log("Hide registered: " + req.params.id);
 					res.send('Hide registered: ' + req.params.id);
 					self.sendSocketNotification("MotionEyeHide", req.params.id);
 				});
 				this.expressApp.get('/motioneye/:id*?', function (req, res) {
-					console.log("Motion registered");
+					console.log("Motion registered: " + req.params.id);
 					res.send('Motion registered: ' + req.params.id);
 					self.sendSocketNotification("MotionEyeShow", req.params.id);
 				});
-			} else {
-				self.sendSocketNotification("MotionEyeShow", undefined);
-			}
+			} 
+
 			return;
 		}
 	},
-	
 });

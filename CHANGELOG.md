@@ -1,5 +1,9 @@
 #MMM-MotionEye Change Log
 
+## [1.5.1] - 2017-02-12
+
+- Fixed some bugs for those with multiple cameraes
+
 ## [1.5.0] - 2017-02-12
 
 - When `autoHide` is enabled, the camera will be started as hidden.
