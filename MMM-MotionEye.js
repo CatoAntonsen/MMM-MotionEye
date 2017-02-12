@@ -59,7 +59,7 @@ Module.register("MMM-MotionEye",{
 			this.debug("Showing module")
 			this.show(2000);
 			
-			if (this.config.autoHide) {
+			if (this.config.autoHide && this.config.autoHideDelay > 0) {
 				this.debug("Module will autohide in " + this.config.autoHideDelay + " ms")
 				var self = this;
 				self.timeOutID = setTimeout(function() {

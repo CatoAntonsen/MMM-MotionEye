@@ -19,6 +19,11 @@ module.exports = NodeHelper.create({
 			self.config = config;
 			
 			if (config.autoHide) {
+
+				// Start by hiding camera
+				console.log("Hiding camera: " + config.id);
+				self.sendSocketNotification("MotionEyeHide", config.id);
+
 				this.expressApp.get('/motioneye/hide/:id*?', function (req, res) {
 					console.log("Hide registered");
 					res.send('Hide registered: ' + req.params.id);
