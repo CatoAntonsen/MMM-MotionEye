@@ -1,5 +1,10 @@
 #MMM-MotionEye Change Log
 
+## [1.5.0] - 2017-02-12
+
+- When `autoHide` is enabled, the camera will be started as hidden.
+- If `autoHideDelay` is set to `0` the camera will never be hidden.
+
 ## [1.4.0] - 2017-01-29
 
 - Added functionality to hide video stream remotely with a link function ([PR#5](https://github.com/CatoAntonsen/MMM-MotionEye/pull/5) by [snille](https://github.com/snille) )

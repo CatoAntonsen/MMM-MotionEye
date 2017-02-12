@@ -3,7 +3,7 @@
 
 ![Example](example.png) 
 
-Current version is 1.4.0 See [changelog](CHANGELOG.md "Version history") for version history.
+Current version is 1.5.0 See [changelog](CHANGELOG.md "Version history") for version history.
 
 ## Pre-requisite
 
@@ -47,21 +47,21 @@ You can use same id on many instances if you want.
 Leave blank if you only have one camera.
 
 ### **autoHide**
-If you want the camera to only be visible on the mirror when there is motion, set this to `true`. 
-You then have to enable **Call a Web Hook** in **Motion Eye** under the **Motion Notifications section**: 
+This will start your camera hidden and only be visible when motion is detected. Set it to `true` to enable. Default is `false`.
+This requires you to enable **Call a Web Hook** in **Motion Eye** under the **Motion Notifications section**: 
 
- Setting | Value | Comment
- ---|---|---
- Web Hook URL | **http://mirror:8080/motioneye** | If you have multiple instances of this module, add the module's id to the url, like this: http://mirror:8080/motioneye/1 to show module with id '1'  |
- Method: | **GET** | Required |
+Setting | Value | Comment
+---|---|---
+Web Hook URL | **http://mirror:8080/motioneye** | If you have multiple instances of this module, add the module's id to the url, like this: http://mirror:8080/motioneye/1 to show module with id '1'  |
+Method: | **GET** | Required |
 
 Remember to update IP white list to enable access from your Motion Eye box.
 
-You can hide a mode using similar URL's: http://mirror:8080/motioneye/hide or http://mirror:8080/motioneye/hide/}{id}
+You can hide a module using similar URL's: http://mirror:8080/motioneye/hide or http://mirror:8080/motioneye/hide/}{id}
 
 ### **autoHideDelay**
-If autoHide is enabled you can decide how long to wait before hiding the camera.
-Default is60000 (60 seconds).
+If `autoHide` is enabled you can decide how long to wait before hiding the camera. Set it to `0` to never
+Default is `60000` (60 seconds).
 
 ### **debug**
 Show messages in the log if set to `true`. Default is `false`.
