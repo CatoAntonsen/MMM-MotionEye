@@ -37,16 +37,16 @@ These are the valid configuration options:
 Video Streaming URL. You find it in **Motion Eye** in the **Video Streaming Section** under **Usefull URLs** by by clicking the **Streaming URL** link.
 It should look something like this: `http://motioneye:8081` (probably an IP instead of hostname).
 
-## **width**
+### **width**
 Width of camera image. You have to try out what fits YOUR monitor.
 Default is 400px.
 
-## **id**
+### **id**
 If you have multiple instances of this module and turned on `autoHide`, then this value has to match the **Web Hook url** in **Motion Eye**.
 You can use same id on many instances if you want. 
 Leave blank if you only have one camera.
 
-## **autoHide**
+### **autoHide**
 If you want the camera to only be visible on the mirror when there is motion, set this to `true`. 
 You then have to enable **Call a Web Hook** in **Motion Eye** under the **Motion Notifications section**: 
 
@@ -59,11 +59,11 @@ Remember to update IP white list to enable access from your Motion Eye box.
 
 You can hide a mode using similar URL's: http://mirror:8080/motioneye/hide or http://mirror:8080/motioneye/hide/}{id}
 
-## **autoHideDelay**
+### **autoHideDelay**
 If autoHide is enabled you can decide how long to wait before hiding the camera.
 Default is60000 (60 seconds).
 
-## **debug**
+### **debug**
 Show messages in the log if set to `true`. Default is `false`.
 
 ## Update
