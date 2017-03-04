@@ -50,6 +50,12 @@ Leave blank if you only have one camera.
 This will start your camera hidden and only be visible when motion is detected. Set it to `true` to enable. Default is `false`.
 This requires you to enable **Call a Web Hook** in **Motion Eye** under the **Motion Notifications section**: 
 
+### **allowForce**
+This will allow the module to force modules to be shown (if hidden and locked by another module ex. profile-switcher). Default is `false`.
+
+### **animationSpeed**
+Sets the duration of the fade animation. Default is `2000`.
+
 Setting | Value | Comment
 ---|---|---
 Web Hook URL | **http://mirror:8080/motioneye** | If you have multiple instances of this module, add the module's id to the url, like this: http://mirror:8080/motioneye/1 to show module with id '1'  |

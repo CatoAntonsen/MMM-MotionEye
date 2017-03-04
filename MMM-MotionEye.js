@@ -14,7 +14,11 @@ Module.register("MMM-MotionEye",{
 		width: "400px",
 		autoHide: false,
 		autoHideDelay: 60000,
-		debug: false
+		debug: false,
+        // Allow the module to force modules to be shown (if hidden and locked by another module ex. profile-switcher).
+        allowForce: false,
+		// The speed of the hide and show animation.
+		animationSpeed: 2000
 	},
 
 	debug: function(msg) {
@@ -60,14 +64,14 @@ Module.register("MMM-MotionEye",{
 			}
 
 			this.debug("Showing module")
-			this.show(2000);
+			this.show(this.config.animationSpeed, {force: this.config.allowForce});
 
 			if (this.config.autoHide && this.config.autoHideDelay > 0) {
 				this.debug("Module will autohide in " + this.config.autoHideDelay + " ms")
 				var self = this;
 				this.timeOutID = setTimeout(function() {
 					self.debug("Autohiding ...");
-					self.hide(2000, function() {
+					self.hide(this.config.animationSpeed, function() {
 						self.debug("Removing stream");
 						self.motionDetected = false;
 						self.updateDom();
@@ -81,7 +85,7 @@ Module.register("MMM-MotionEye",{
 		} else if (notification == "MotionEyeHide" && this.config.id == id) {
 			this.debug("socketNotificationReceived notification is MotionEyeHide");
 			var self = this;
-			this.hide(2000, function() {
+			this.hide(this.config.animationSpeed, function() {
 				self.debug("Removing stream");
 				self.motionDetected = false;
 				self.updateDom();
