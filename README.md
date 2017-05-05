@@ -5,6 +5,11 @@
 
 Current version is 1.5.1 See [changelog](CHANGELOG.md "Version history") for version history.
 
+## Forum / discussion
+
+You can discuss and get help for this module on the [Magic Mirror forum](https://forum.magicmirror.builders/topic/1085/mmm-motioneye-surveillance-video-stream-on-your-mirror).
+
+
 ## Pre-requisite
 
 You have to have an installation of Motion Eye with Video Streaming enabled. Installation and usage of Motion Eye is out of scope for this documentation.
