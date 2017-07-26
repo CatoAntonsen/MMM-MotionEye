@@ -3,7 +3,7 @@
 
 ![Example](example.png) 
 
-Current version is 1.5.1 See [changelog](CHANGELOG.md "Version history") for version history.
+Current version is 1.6.0 See [changelog](CHANGELOG.md "Version history") for version history.
 
 ## Forum / discussion
 
@@ -30,6 +30,9 @@ Add the module to the modules array in the `config/config.js` file by adding the
 	position: 'bottom_right',
 	config: {
 		url: "http://motioneye:8081",
+		forcedRefreshInterval: 60000,
+		width: 400px,
+		debug: true
 	}
 },
 ```
@@ -52,27 +55,30 @@ You can use same id on many instances if you want.
 Leave blank if you only have one camera.
 
 ### **autoHide**
-This will start your camera hidden and only be visible when motion is detected. Set it to `true` to enable. Default is `false`.
+This will start your camera hidden and only be visible when motion is detected. Set it to `true` to enable. Default is `false`. See `autoHideDelay` for configuring when camera will be hidden after motion detection.
 This requires you to enable **Call a Web Hook** in **Motion Eye** under the **Motion Notifications section**: 
-
-### **allowForce**
-This will allow the module to force modules to be shown (if hidden and locked by another module ex. profile-switcher). Default is `false`.
-
-### **animationSpeed**
-Sets the duration of the fade animation. Default is `2000`.
 
 Setting | Value | Comment
 ---|---|---
-Web Hook URL | **http://mirror:8080/motioneye** | If you have multiple instances of this module, add the module's id to the url, like this: http://mirror:8080/motioneye/1 to show module with id '1'  |
+Web Hook URL | `http://mirror:8080/motioneye` | If you have multiple instances of this module, add the module's id to the url, like this: `http://mirror:8080/motioneye/1` to show module with id '**1**'  |
 Method: | **GET** | Required |
 
 Remember to update IP white list to enable access from your Motion Eye box.
 
-You can hide a module using similar URL's: http://mirror:8080/motioneye/hide or http://mirror:8080/motioneye/hide/}{id}
+You can hide a module using similar URL's: `http://mirror:8080/motioneye/hide` or `http://mirror:8080/motioneye/hide/}{id}`
 
 ### **autoHideDelay**
 If `autoHide` is enabled you can decide how long to wait before hiding the camera. Set it to `0` to never
 Default is `60000` (60 seconds).
+
+### **animationSpeed**
+Sets the duration of the fade animation. Default is `2000`.
+
+### **forcedRefreshInterval**
+Forces a refresh of the video stream in case the video source temporarely is unavailable. Default is `0`. Suggested is `60000` (10 minutes).
+
+### **allowForce**
+This will allow the module to force modules to be shown (if hidden and locked by another module ex. profile-switcher). Default is `false`.
 
 ### **debug**
 Show messages in the log if set to `true`. Default is `false`.

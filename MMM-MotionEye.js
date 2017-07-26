@@ -18,7 +18,8 @@ Module.register("MMM-MotionEye",{
         // Allow the module to force modules to be shown (if hidden and locked by another module ex. profile-switcher).
         allowForce: false,
 		// The speed of the hide and show animation.
-		animationSpeed: 2000
+		animationSpeed: 2000,
+		forcedRefreshInterval: 0
 	},
 
 	debug: function(msg) {
@@ -26,17 +27,25 @@ Module.register("MMM-MotionEye",{
 			console.log("MMM-MotionEye: " + msg)
 		}
 	},
-	
+
 	start: function() {
-		this.motionDetected = !this.config.autoHide;
-		this.timeOutID == undefined;
-		
-		this.sendSocketNotification('CONFIG', this.config);
+		this.refreshTimer = null;
+		this.startForcedRefresh(this);
+
+		this.sendSocketNotification("CONFIG", this.config);
+	},
+
+	resume: function() {
+		this.startForcedRefresh(this);
+	},
+
+	suspend: function() {
+		if (this.refreshTimer) window.clearInterval(this.refreshTimer);
 	},
 	
 	// Override dom generator.
 	getDom: function() {
-		if (this.motionDetected) {
+		if (!this.hidden) {
 			var img = document.createElement("img");
 			img.setAttribute("class", "motionEyeImage");
 			img.id = this.config.id;
@@ -47,7 +56,34 @@ Module.register("MMM-MotionEye",{
 		
 		return document.createElement("div");
 	},
-	
+
+	startForcedRefresh: function() {
+		var self = this;
+
+		if (self.config.forcedRefreshInterval > 0) {
+			self.debug("Starting")
+			if (self.refreshTimer) window.clearInterval(self.refreshTimer);
+
+			self.refreshTimer = setInterval(function() {
+				self.forceRefresh(self);
+			}, this.config.forcedRefreshInterval);
+		}
+	},
+
+	forceRefresh: function(self) {
+		if (!self.hidden) {
+			var images = document.getElementsByClassName("motionEyeImage");
+			for (var i=0; i < images.length; i++) {
+				var img = images[i];
+				if (img.id == self.config.id) {
+					var url = img.src.split((img.src.indexOf("&") > -1) ? "&" : "?"+"timestamp=")[0];
+					img.src = url + ((url.indexOf("&") > -1) ? "&" : "?") + "timestamp=" + new Date().getTime();
+					self.debug("Reloading " + url);
+				}
+			}
+		}
+	},
+
 	socketNotificationReceived: function(notification, id) {
 		this.debug("socketNotificationReceived notification: " + notification);
 		this.debug("socketNotificationReceived notification id: " + id);
@@ -55,8 +91,6 @@ Module.register("MMM-MotionEye",{
 
 		if (notification === "MotionEyeShow" && this.config.id == id) {
 			this.debug("socketNotificationReceived notification is MotionEyeShow");
-			this.motionDetected = true;
-			this.updateDom();
 			
 			if (this.timeOutID != undefined) {
 				clearTimeout(this.timeOutID);
@@ -71,25 +105,15 @@ Module.register("MMM-MotionEye",{
 				var self = this;
 				this.timeOutID = setTimeout(function() {
 					self.debug("Autohiding ...");
-					self.hide(this.config.animationSpeed, function() {
-						self.debug("Removing stream");
-						self.motionDetected = false;
-						self.updateDom();
-					});
+					self.hide(this.config.animationSpeed);
 				}, self.config.autoHideDelay);
 			} else {
 				this.debug("AutoHide is not enabled or autoHideDelay is 0")
-				this.motionDetected = true;
-				this.updateDom();
 			}
 		} else if (notification == "MotionEyeHide" && this.config.id == id) {
 			this.debug("socketNotificationReceived notification is MotionEyeHide");
 			var self = this;
-			this.hide(this.config.animationSpeed, function() {
-				self.debug("Removing stream");
-				self.motionDetected = false;
-				self.updateDom();
-			});
+			this.hide(this.config.animationSpeed);
 		}
 	}
 });

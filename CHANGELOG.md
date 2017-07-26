@@ -1,5 +1,11 @@
 #MMM-MotionEye Change Log
 
+## [1.6.0] - 2017-07-26
+
+- Added automatic reload of video in case video source has been temporarely down.
+- Fixed documentation about the MotionEye configuration settings when using `autoHide`.
+- Simplification/refactoring of the code.
+
 ## [1.5.1] - 2017-02-12
 
 - Fixed some bugs for those with multiple cameraes
