@@ -24,14 +24,14 @@ git clone https://github.com/CatoAntonsen/MMM-MotionEye.git
 ````
 
 Add the module to the modules array in the `config/config.js` file by adding the following section. Remember to change `url` to reflect **your** Motion Eye server:
-```
+```js
 {
 	module: 'MMM-MotionEye',
 	position: 'bottom_right',
 	config: {
 		url: "http://motioneye:8081",
 		forcedRefreshInterval: 60000,
-		width: 400px,
+		width: "400px",
 		debug: true
 	}
 },
